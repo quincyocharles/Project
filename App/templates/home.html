@@ -1,9 +1,7 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <main id="main">
-      <!-- ======= Hero Slider Section ======= -->
-      <!-- <section id="hero-slider" class="hero-slider">
+{% extends 'base.html' %} {% block content %}
+<main id="main">
+  <!-- ======= Hero Slider Section ======= -->
+  <!-- <section id="hero-slider" class="hero-slider">
         <div class="container-md" data-aos="fade-in">
           <div class="row">
             <div class="col-12">
@@ -118,45 +116,57 @@
           </div>
         </div>
       </section> -->
-      <!-- End Hero Slider Section -->
+  <!-- End Hero Slider Section -->
 
-      <!-- ======= Post Grid Section ======= -->
-     
-      <!-- End Culture Category Section -->
+  <!-- ======= Post Grid Section ======= -->
 
-      <!-- ======= Business Category Section ======= -->
-      <section class="category-section">
-        <div class="container" data-aos="fade-up">
-            <div class="section-header d-flex justify-content-between align-items-center mb-5">
-                <h2>Latest</h2>
+  <!-- End Culture Category Section -->
+
+  <!-- ======= Business Category Section ======= -->
+  <section class="category-section">
+    <div class="container" data-aos="fade-up">
+      <div
+        class="section-header d-flex justify-content-between align-items-center mb-5"
+      >
+        <h2>Latest</h2>
+      </div>
+
+      <div class="row">
+        {% for post in all_posts %}
+        <div class="col-lg-4 col-md-6 mt-3">
+          <div class="card p-3">
+            <img
+              src="{{ post.featured_image.url }}"
+              class="card-img-top"
+              alt="{{ post.title }}"
+              style="max-width: 100%; height: auto"
+            />
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="card-text text-muted h6">
+                By {{ post.author }} | {{ post.created_on}}
+              </p>
+              <p class="card-text">{{ post.content | slice:":200" }}</p>
+              <a
+                href="{% url 'post_detail' post.slug %}"
+                class="btn btn-primary"
+                >Read More &rarr;</a
+              >
             </div>
-    
-            <div class="col-md-8 mt-3 left">
-                <div class="row row-cols-2">  {% for post in all_posts %}
-                    <div class="col">  <div class="card p-3">
-                        <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
-                        <div class="card-body">
-                          <h2 class="card-title">{{ post.title }}</h2>
-                          <p class="card-text text-muted h6">By {{ post.author }} | {{ post.created_on}} </p>
-                          <p class="card-text">{{ post.content | slice:":200" }}</p>
-                          <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
-                        </div>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-              
-              
-    
-      <!-- End Business Category Section -->
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
-      <!-- ======= Lifestyle Category Section ======= -->
-      
-      <!-- End Lifestyle Category Section -->
-    </main>
-    <!-- End #main -->
+  <!-- End Business Category Section -->
 
-    <!-- ======= Footer ======= -->
-    {% endblock %}
-   
+  <!-- ======= Lifestyle Category Section ======= -->
+
+  <!-- End Lifestyle Category Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% endblock %}
